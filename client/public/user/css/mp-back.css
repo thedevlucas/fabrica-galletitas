@@ -1,0 +1,226 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Bebas+Neue');
+
+:root {
+    --fontColor: rgb(0, 0, 0)
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style-type: none;
+}
+
+*::-webkit-scrollbar {
+    width: 0px; 
+}
+
+*::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: #505050;
+}
+
+body {
+    background-color: #2c2c38;
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
+
+.hide {
+    display: none;
+}
+
+.wrapper {
+    /* background-color: antiquewhite; */
+    background-color: #fff;
+    position: absolute;
+    top: 50%;
+    right: 50%;
+    transform: translate(50%, -50%);
+    width: 600px;
+    height: 400px;
+    border-radius: 10px;
+    box-shadow: 1px 1px 20px 10px rgba(255,255, 255, 0.1);
+}
+
+.wrapper .status {
+    height: 100px;
+    width: 100px;
+    border: 5px solid #cfcfcf;
+    border-top-color: #2a88e6;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-radius: 50%;
+    animation: spin 1s infinite linear;
+    transition: all 1s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.wrapper .status.success {
+    background-color: #00fc60;
+    border: none;
+    animation: move 1s forwards 
+}
+
+.wrapper .status.success + .text {
+    display: block;
+    opacity: 0;
+    animation: fadeOut 2s forwards;
+    animation-delay: 0.5s;
+}
+
+.wrapper .status.error {
+    background-color: #fc0000;
+    border: none;
+    animation: move 1s forwards 
+}
+
+.wrapper .status.error + .text {
+    display: block;
+    opacity: 0;
+    animation: fadeOut 2s forwards;
+    animation-delay: 0.5s;
+}
+
+.wrapper .status .checkmark {
+    display: none;
+    height: 32px;
+    width: 18px;
+    margin-left: 60%; 
+    border-bottom: 6px solid #ffffff;
+    border-right: 6px solid #ffffff;
+    position: absolute;
+    top: 50%;
+    right: 50%;
+    transform: translate(50%, -60%) rotate(45deg);
+}
+
+.xmark {
+    display: none;
+    position: absolute;
+    width: 40%;
+    height: 6px;
+    background-color: white;
+    transform: rotate(45deg);
+}
+
+.xmark:before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 6px;
+    background-color: white;
+    transform: rotate(90deg);
+}
+
+.wrapper .status.success .checkmark {
+    display: inline-block;
+}
+
+.wrapper .status.error .xmark {
+    display: inline-block;
+}
+
+.wrapper .text {
+    display: none;
+    position: relative;
+    width: 80%;
+    left: 10%;
+    top: 36%;
+    font-size: 13px;
+    text-align: center;
+}
+
+.wrapper .text h4 {
+    width: 100%;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.wrapper .button {
+    display: none;
+}
+
+.wrapper .button a {
+    position: absolute;
+    display: flex;
+    width: 30%;
+    left: 35%;
+    top: 85%;
+    outline: none;
+    border: 0;
+    font-size: 15px;
+    line-height: 1;
+    height: 35px;
+    border-radius: 8px;
+    background: #0081D5;
+    color: #fff;
+    cursor: pointer;
+    transition: all .1s;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.wrapper .button button:hover {
+    background: #0078c9;
+}
+
+.wrapper .button button:active {
+    background: #008deb;
+}
+
+.wrapper .status.success + .text + .button {
+    display: block;
+    opacity: 0;
+    animation: fadeOut 2s forwards;
+    animation-delay: 0.5s;
+}
+
+.wrapper .status.error + .text + .button {
+    display: block;
+    opacity: 0;
+    animation: fadeOut 2s forwards;
+    animation-delay: 0.5s;
+}
+
+@keyframes spin {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes move {
+    100% {
+        top: -60%;
+    }
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .wrapper {
+        width: 350px;
+        height: 500px;
+    }
+
+    .wrapper .button button {
+        top: 90%;
+    }
+}

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="<%= getFile('css/home.css') %>">
+    <link rel="stylesheet" href="<%= getFile('css/signForm.css') %>">
+    <link rel="stylesheet" href="<%= getFile('user/css/calendar.css') %>">
+    <link rel="stylesheet" href="<%= getFile('user/css/turnos.css') %>">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <title>Balines Mojados</title>
+    <script>
+        let plans = JSON.parse('<%- JSON.stringify(plans) %>');
+        let rooms = JSON.parse('<%- JSON.stringify(rooms) %>');
+        let reserves = JSON.parse('<%- JSON.stringify(reserves) %>');
+    </script>
+</head>
+<body>
+    <%- include('../global/components/header.ejs') %>
+    
+    <form action="/user/reserves" method="post" id="form">
+        <section class="secondSection" id="info">
+            <div class="title">
+                <h1>Seleccionar Campo</h1>
+            </div>
+            <div class="canchas">
+                <div class="cancha selected" value="small">
+                    <img src="<%= getFile('user/images/cancha.png') %>" alt="">
+                    <span>Cancha Chica (10 personas)</span>
+                </div>
+                <div class="cancha" value="medium">
+                    <img src="<%= getFile('user/images/cancha.png') %>" alt="">
+                    <span>Cancha Mediana (15 personas)</span>
+                </div>
+                <div class="cancha" value="big">
+                    <img src="<%= getFile('user/images/cancha.png') %>" alt="">
+                    <span>Cancha Grande (20 personas)</span>
+                </div>
+                <input type="text" name="type" id="type" class="hide">
+            </div>
+            <div class="form">
+                <div class="left">
+                    <div class="reserve">
+                        <div class="input">
+                            <h5>Nombre</h5>
+                            <input type="text" name="name" id="name">
+                        </div>
+                        <div class="input">
+                            <h5>Apellido</h5>
+                            <input type="text" name="lastname" id="lastname">
+                        </div>
+                        <div class="input">
+                            <h5>Teléfono</h5>
+                            <input type="number" name="phone" id="phone">
+                        </div>
+                        <div class="input">
+                            <h5>Cantidad de personas</h5>
+                            <input type="number" name="players" id="players">
+                        </div>
+                        <small id="errorMessage">Error message</small>
+                    </div>
+                </div>
+                <div class="middle">
+                    <div class="wrapper">
+                        <div class="top">
+                            <p class="current-date"></p>
+                            <div class="icons">
+                                <span id="prev" class="material-symbols-rounded"><i class='bx bxs-chevron-left' ></i></span>
+                                <span id="next" class="material-symbols-rounded"><i class='bx bxs-chevron-right' ></i></span>
+                            </div>
+                        </div>
+                        <div class="calendar">
+                            <ul class="weeks">
+                                <li>DO</li>
+                                <li>LU</li>
+                                <li>MA</li>
+                                <li>MI</li>
+                                <li>JU</li>
+                                <li>VI</li>
+                                <li>SA</li>
+                            </ul>
+                            <ul class="days"></ul>
+                        </div>
+                        <input type="date" name="date" id="date" class="hide">
+                    </div>
+                    <div class="packInfo">
+                        <h3>Pack seleccionado</h3>
+                        <p id="planName">Pack Estandar</p>
+                        <input type="number" name="planId" id="planId" class="hide">
+                    </div>
+                    <button>Ir a pagar</button>
+                </div>
+                <div class="right">
+                    <div class="times">
+                        <h3>Horarios disponibles</h3>
+                        <div class="list">
+                            <span>07:00</span>
+                            <span class="occuped">07:00</span>
+                        </div>
+                        <input type="time" name="time" id="time" class="hide">
+                    </div>
+                </div>
+            </div>
+        </section>
+    </form>
+
+    <script src="<%= getFile('user/js/turnos.js') %>"></script>
+</body>
+</html>
