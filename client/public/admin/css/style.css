@@ -618,3 +618,11 @@ main .register button {
 	margin-top: 3.5%;
 	padding: 2%;
 }
+
+.moreInfo {
+	display: flex;
+}
+
+.moreInfo .detalles {
+	margin-right: 5%;
+}
