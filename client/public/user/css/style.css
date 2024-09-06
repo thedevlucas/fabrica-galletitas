@@ -538,6 +538,7 @@ main .register button {
 	padding: 5px 75px;
 	margin-bottom: 2%;
 	width: 250px;
+	cursor: pointer;
 }
 /* MAIN */
 /* CONTENT */
