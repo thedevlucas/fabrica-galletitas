@@ -19,7 +19,7 @@ const isAuthenticated = async (req, res, next) => {
     res.redirect(`/login`);
 };
 
-routerUser.use(isAuthenticated);
+//routerUser.use(isAuthenticated);
 
 const isAllowed = async (req, res, next) => {
     let userData = auth.getUser(functions.getCookie(req, 'token'));
