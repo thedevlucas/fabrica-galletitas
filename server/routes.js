@@ -8,6 +8,7 @@ const router = express.Router();
 const routerUser = express.Router();
 const routerDriver = express.Router();
 const routerPallete = express.Router();
+const routerLogistic = express.Router();
 const routerAdmin = express.Router();
 const routerAPI = express.Router();
 
@@ -82,6 +83,13 @@ for (let x of files)
     Event(routerPallete, database, mp)
 }
 
+files = fs.readdirSync('./server/pages/user/logistic').filter(file => file.endsWith('.js'));
+for (let x of files) 
+{
+    const Event = require(`./pages/user/logistic/${x}`);
+    Event(routerLogistic, database, mp)
+}
+
 files = fs.readdirSync('./server/pages/user/admin')
 for (let x of files) 
 {
@@ -124,4 +132,4 @@ process.on('SIGUSR2', exitHandler.bind(null, {exit:true}));
 // catches uncaught exceptions
 process.on('uncaughtException', exitHandler.bind(null, {exit:true}));
 
-module.exports = {router, routerUser, routerDriver, routerPallete, routerAdmin, routerAPI};
+module.exports = {router, routerUser, routerDriver, routerPallete, routerLogistic, routerAdmin, routerAPI};
