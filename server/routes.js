@@ -67,7 +67,7 @@ for (let x of files)
     Event(routerUser, database, mp)
 }
 
-files = fs.readdirSync('./server/pages/user/user').filter(file => file.endsWith('.js'));
+files = fs.readdirSync('./server/pages/user/driver').filter(file => file.endsWith('.js'));
 for (let x of files) 
 {
     const Event = require(`./pages/user/driver/${x}`);

@@ -628,3 +628,16 @@ main .register button {
 .moreInfo .detalles {
 	margin-right: 5%;
 }
+
+.detalles input {
+	padding: 5px 15px;
+	margin-top: 2%;
+	margin-bottom: 2%;
+	width: 200px;
+}
+
+.detalles button {
+	padding: 5px 15px;
+	cursor: pointer;
+	width: 200px;
+}

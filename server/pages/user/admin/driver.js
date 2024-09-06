@@ -2,7 +2,7 @@ const mysql = require('mysql2');
 
 module.exports = (router, database) => 
 {
-    router.get('/driver', async (req, res) => {
+    router.get('/drivers', async (req, res) => {
         //const con = mysql.createConnection(database);
         
         try {
