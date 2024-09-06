@@ -40,6 +40,7 @@ let routes = require('./server/routes.js')
 app.use(routes.router);
 app.use('/user', routes.routerUser, express.static(path.join(__dirname, 'client/public/user')));
 app.use('/admin', routes.routerAdmin, express.static(path.join(__dirname, 'client/public/admin')));
+app.use('/driver', routes.routerDriver, express.static(path.join(__dirname, 'client/public/driver')));
 app.use('/api', routes.routerAPI);
 
 // static files
