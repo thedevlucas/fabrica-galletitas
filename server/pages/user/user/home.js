@@ -2,7 +2,7 @@ const mysql = require('mysql2');
 
 module.exports = (router, database) => 
 {
-    router.get('/panel', async (req, res) => {
+    router.get('/', async (req, res) => {
         //const con = mysql.createConnection(database);
         
         try {

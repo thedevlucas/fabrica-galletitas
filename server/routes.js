@@ -22,7 +22,7 @@ const isAuthenticated = async (req, res, next) => {
     res.redirect(`/login`);
 };
 
-//routerUser.use(isAuthenticated);
+routerUser.use(isAuthenticated);
 
 const isAllowed = async (req, res, next) => {
     let userData = auth.getUser(functions.getCookie(req, 'token'));
@@ -32,7 +32,7 @@ const isAllowed = async (req, res, next) => {
     res.redirect(`/`);
 };
 
-//routerAdmin.use(isAuthenticated, isAllowed);
+routerAdmin.use(isAuthenticated, isAllowed);
 
 //Database Info
 const database = {
@@ -41,11 +41,6 @@ const database = {
     password: config.db.pass,
     database: config.db.db
 }
-
-//MP
-const { MercadoPagoConfig } = require('mercadopago');
-const mp = new MercadoPagoConfig({ accessToken: config.mp.accessToken, options: { timeout: 5000, idempotencyKey: 'abc' } });
-
 
 //Pages loader
 let files = fs.readdirSync('./server/pages/api').filter(file => file.endsWith('.js'));
@@ -66,28 +61,7 @@ files = fs.readdirSync('./server/pages/user/user').filter(file => file.endsWith(
 for (let x of files) 
 {
     const Event = require(`./pages/user/user/${x}`);
-    Event(routerUser, database, mp)
-}
-
-files = fs.readdirSync('./server/pages/user/driver').filter(file => file.endsWith('.js'));
-for (let x of files) 
-{
-    const Event = require(`./pages/user/driver/${x}`);
-    Event(routerDriver, database, mp)
-}
-
-files = fs.readdirSync('./server/pages/user/pallete').filter(file => file.endsWith('.js'));
-for (let x of files) 
-{
-    const Event = require(`./pages/user/pallete/${x}`);
-    Event(routerPallete, database, mp)
-}
-
-files = fs.readdirSync('./server/pages/user/logistic').filter(file => file.endsWith('.js'));
-for (let x of files) 
-{
-    const Event = require(`./pages/user/logistic/${x}`);
-    Event(routerLogistic, database, mp)
+    Event(routerUser, database)
 }
 
 files = fs.readdirSync('./server/pages/user/admin')

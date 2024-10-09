@@ -8,7 +8,7 @@ module.exports = (router, database) =>
         try {
             //const [results] = await con.promise().query(`SELECT u.id, u.group, u.username, c.name AS course, p.date FROM users u LEFT JOIN purchases p ON u.id = p.userId LEFT JOIN courses c ON p.courseId = c.id`);
 
-            res.render('admin/home', {content: "create", form: "select" });
+            res.render('admin/home', {content: "create"});
         } catch (error) {
             console.error(error);
         } finally {

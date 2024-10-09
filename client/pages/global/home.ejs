@@ -13,18 +13,21 @@
         <img src="<%= getFile('images/cookie.png') %>" alt="">
         <h1>FABRICA GALLETITAS</h1>
     </div>
-    <form action="">
+    <form action="login" method="post">
         <div class="formTitle">
             <h1>INICIAR SESIÓN</h1>
             <div class="inputs">
                 <div class="input">
                     <h5>Usuario</h5>
-                    <input type="text">
+                    <input type="text" name="username">
                 </div>
                 <div class="input">
                     <h5>Contraseña</h5>
-                    <input type="password">
+                    <input type="password" name="password">
                 </div>
+                <% if (typeof(error) != "undefined") { %>
+                    <p><%= error %></p>
+                <% } %>
                 <button>INICIAR SESIÓN</button>
             </div>
         </div>

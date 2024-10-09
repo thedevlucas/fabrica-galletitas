@@ -89,7 +89,7 @@ module.exports.login = async (req, res, loginInfo) =>
             clientNo: sequence++
         });
 
-        return {status: true, err: 0, info: "Logged successfully", data: {id: result.id, token: token}};
+        return {status: true, err: 0, info: "Logged successfully", data: {id: result.id, token: token, group: result.group}};
     } catch (error) {
         console.error(error);
         return {status: false, err: 500, info: "Server error"};
@@ -200,5 +200,6 @@ module.exports.isAuthenticated = (token) =>
 }
 
 module.exports.isAllowed = (userGroup, requireRole) => {
+    if (!userGroup || !requireRole) return false;
     return groups.indexOf(userGroup) <= groups.indexOf(requireRole)
 }
