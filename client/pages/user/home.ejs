@@ -6,14 +6,16 @@
     <link rel="stylesheet" href="<%= getFile('user/css/style.css') %>">
 	<link rel="stylesheet" href="<%= getFile('user/css/progress.css') %>">
 	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
-	<title>Client Panel</title>
+	<title>Panel</title>
+	<script>
+		let user = JSON.parse('<%- getUser() %>');
+	</script>
 </head>
 <body>
 	<section id="sidebar">
 		<a href="#" class="brand">
-
 			<span class="text">FABRICA GALLETITAS</span>
-		</a>
+		</a> 
 		<ul class="side-menu top">
 			<li class="active">
 				<a href="#">
@@ -56,6 +58,7 @@
 
 		<%- include('views/'+ content) %>
 	</section>
+	<script src="<%= getFile('user/js/dashboard.js') %>"></script>
 	<script src="<%= getFile('user/js/script.js') %>"></script>
 </body>
 </html>

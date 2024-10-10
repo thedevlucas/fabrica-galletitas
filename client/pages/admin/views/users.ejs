@@ -13,35 +13,46 @@
             </ul>
         </div>
     </div>
-
-
     <div class="table-data">
         <div class="order">
             <div class="head">
                 <h3>Todos los usuarios</h3>
-                <form action="#">
+                <!-- <form action="#">
                     <div class="form-input">
                         <input type="search" placeholder="Buscar...">
                         <button type="submit" class="search-btn"><i class='bx bx-search' ></i></button>
                     </div>
                 </form>
-                <i class='bx bx-filter' ></i>
+                <i class='bx bx-filter' ></i> -->
             </div>
             <table>
                 <thead>
                     <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
                         <th>Usuario</th>
-                        <th>Fecha de orden</th>
-                        <th>Estado</th>
+                        <th>Group</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
+                    <% for (let x of users) { %>
+                        <tr>
+                            <td><%- x.id  %></td>
+                            <td><%- x.name  %></td>
+                            <td><%- x.lastname  %></td>
+                            <td><%- x.username  %></td>
+                            <td><span class="status completado"><%- x.group  %></span></td>
+                            <!-- <td><a href="/admin/view/<%- x.id  %>"><i class='bx bx-edit' ></i></a></td> -->
+                        </tr>
+                    <% } %>
+                    <!-- <tr>
                         <td>
                             <p>John Doe</p>
                         </td>
                         <td>01-10-2021</td>
-                        <td><span class="status completado">Completed</span> <button><i class='bx bx-edit' ></i></button></td>
+                        <td><span class="status completado">Completed</span> <button></button></td>
                     </tr>
                     <tr>
                         <td>
@@ -72,9 +83,12 @@
                         </td>
                         <td>01-10-2021</td>
                         <td><span class="status pendiente">Pendiente</span><button><i class='bx bx-edit' ></i></button></td>
-                    </tr>
+                    </tr> -->
                 </tbody>
             </table>
         </div>
     </div>
 </main>
+<script>
+    let users = JSON.parse('<%- JSON.stringify(users) %>') 
+</script>

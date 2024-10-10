@@ -15,7 +15,7 @@
 		</a>
 		<ul class="side-menu top">
 			<li>
-				<a href="/admin/">
+				<a href="/admin">
 					<i class='bx bxs-dashboard' ></i>
 					<span class="text">Panel</span>
 				</a>
@@ -59,8 +59,26 @@
 			</form> -->
 		</nav>
 
-		<%- include('views/'+ content) %>
+		<% if (typeof content != "undefined") { %>
+			<%- include('views/'+ content) %>
+		<% } %>
 	</section>
-	<script src="<%= getFile('admin/js/script.js') %>"></script>
+
+	<% if (typeof alert != "undefined") { %>
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script>
+            Swal.fire({
+                title: "<%= alert.title %>",
+                text: "<%= alert.message %>",
+                icon: "<%= alert.icon %>",
+                showConfirmButton: "<%= alert.showConfirmButton %>",
+                confirmButtonColor: "#28a745",
+                timer: "<%= alert.time %>",
+            }).then(() => {
+                window.location = "/<%= alert.ruta %>"
+            })
+        </script>
+    <% } %>
+	<script src="<%= getFile('user/js/dashboard.js') %>"></script>
 </body>
 </html>
