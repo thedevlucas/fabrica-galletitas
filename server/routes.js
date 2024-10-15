@@ -19,7 +19,7 @@ const isAuthenticated = async (req, res, next) => {
     let isAuthenticated = auth.isAuthenticated(functions.getCookie(req, 'token'));
     if (isAuthenticated) return next();
 
-    res.redirect(`/login`);
+    res.redirect(`/`);
 };
 
 routerUser.use(isAuthenticated);
@@ -57,12 +57,25 @@ for (let x of files)
     Event(router, database)
 }
 
-files = fs.readdirSync('./server/pages/user/user').filter(file => file.endsWith('.js'));
+files = fs.readdirSync('./server/pages/user/user')
 for (let x of files) 
 {
-    const Event = require(`./pages/user/user/${x}`);
-    Event(routerUser, database)
+    if (x.endsWith('.js'))
+    {
+        const Event = require(`./pages/user/user/${x}`);
+        Event(routerUser, database) 
+    }
+    else
+    {
+        files = fs.readdirSync('./server/pages/user/user/' + x).filter(file => file.endsWith('.js'));
+        for (let x2 of files) 
+        {
+            const Event = require(`./pages/user/user/${x}/${x2}`);
+            Event(routerUser, database) 
+        }
+    }
 }
+
 
 files = fs.readdirSync('./server/pages/user/admin')
 for (let x of files) 

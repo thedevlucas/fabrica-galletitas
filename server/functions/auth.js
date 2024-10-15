@@ -14,8 +14,12 @@ const database = {
 
 //Groups
 const groups = [
-    "admin",
-    "user"
+    'admin',
+    'cliente',
+    'conductor',
+    'logistica',
+    'paletizador',
+    'user'
 ];
 
 module.exports.clientData = [];

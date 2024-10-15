@@ -37,7 +37,13 @@ module.exports = (router, database) =>
         
         try {
             const passwordHashed = bcrypt.hashSync(body.password, 10);
-            const [results_insert] = await con.promise().query('INSERT INTO users SET ?', {group: body.type, username: body.username, password: passwordHashed, name: body.name, lastname: body.lastname, phone: body.phone, storeName: body.storeName, storeAddress: body.storeAddress});
+            
+            const [results_insert] = await con.promise().query('INSERT INTO users SET ?', {group: body.type, username: body.username, password: passwordHashed, name: body.name, lastname: body.lastname, phone: body.phone});
+
+            if (body.storeName && body.storeAddress)
+            {
+                const [results_insert2] = await con.promise().query('INSERT INTO stores SET ?', {user: results_insert.insertId, name: body.storeName, address: body.storeAddress}); 
+            }
 
             res.render('admin/home', { 
                 alert: {

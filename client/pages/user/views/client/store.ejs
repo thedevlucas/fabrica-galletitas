@@ -4,7 +4,7 @@
             <h1>Panel</h1>
             <ul class="breadcrumb">
                 <li>
-                    <a href="#">Panel</a>
+                    <a href="/user">Panel</a>
                 </li>
                 <li><i class='bx bx-chevron-right' ></i></li>
                 <li>
@@ -13,18 +13,17 @@
             </ul>
         </div>
     </div>
-    <form action="" class="register">
+    <form method="post" action="/user/store" class="register">
         <div class="inputs">
             <div class="input">
                 <h5>Nombre del local</h5>
-                <input type="text" name="" id="">
+                <input type="text" name="name" id="name" required value="<%= store.name %>">
             </div>
             <div class="input">
                 <h5>Dirección del local</h5>
-                <input type="text" name="" id="">
+                <input type="text" name="address" id="address" required value="<%= store.address %>">
             </div>
-            <button>Registrar</button>
+            <button>Actualizar</button>
         </div>
     </form>
-        
 </main>
