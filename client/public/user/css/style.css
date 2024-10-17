@@ -479,6 +479,9 @@ body {
 #content main .table-data .order table tr td .status.devuelto {
 	background: var(--dark);
 }
+#content main .table-data .order table tr td .status.despachado {
+	background: #08c5bc;
+}
 
 #content main .table-data .order table tr td button {
 	border: none;
@@ -543,9 +546,40 @@ main .register button {
 /* MAIN */
 /* CONTENT */
 
+main .table-data .order .moreInfo {
+	display: block;
+}
 
+main .table-data .order .moreInfo .detalles {
+	margin-right: 5%;
+}
 
+main .table-data .order .moreInfo .detalles2 {
+	margin-bottom: 2%;
+}
 
+main .table-data .order .moreInfo .details {
+	display: flex;
+	margin-top: 5%;
+	margin-bottom: 2%;
+}
+	
+
+main .table-data .order .moreInfo div{
+	margin-right: 5%;
+}
+
+main .table-data .order .moreInfo button {
+	padding: 5px 75px;
+	margin-bottom: 2%;
+	width: 250px;
+	cursor: pointer;
+}
+
+.userTypes {
+	margin-top: 3.5%;
+	padding: 2%;
+}
 
 
 
@@ -616,15 +650,3 @@ main .register button {
 	}
 }
 
-.userTypes {
-	margin-top: 3.5%;
-	padding: 2%;
-}
-
-.moreInfo {
-	display: flex;
-}
-
-.moreInfo .detalles {
-	margin-right: 5%;
-}
