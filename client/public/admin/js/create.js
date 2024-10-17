@@ -5,7 +5,7 @@ document.querySelectorAll("input").forEach(e => {
     if (e.type == "radio")
     {
         e.addEventListener("click", e2 => {
-            if (e2.target.value == "cliente" || e2.target.value == "paletizador" || e2.target.value == "logistica")
+            if (e2.target.value == "cliente")
             {
                 let html = 
                 `<hr><br>

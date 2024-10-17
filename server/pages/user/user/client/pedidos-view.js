@@ -1,5 +1,4 @@
 const mysql = require('mysql2');
-const { v4: uuidv4 } = require('uuid');
 
 const functions = require('../../../../functions/functions');
 const auth = require('../../../../functions/auth');
@@ -15,7 +14,7 @@ module.exports = (router, database) =>
         try {
             // const [results] = await con.promise().query(`SELECT u.id, u.group, u.username, c.name AS course, p.date FROM users u LEFT JOIN purchases p ON u.id = p.userId LEFT JOIN courses c ON p.courseId = c.id`);
 
-            res.render('user/home', {content: "client/pedido" });
+            res.render('user/home', {content: "client/pedidos-view" });
         } catch (error) {
             console.error(error);
         } finally {

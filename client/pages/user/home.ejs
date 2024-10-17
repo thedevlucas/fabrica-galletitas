@@ -10,6 +10,7 @@
 	<script>
 		let user = JSON.parse('<%- getUser() %>');
 	</script>
+	<script src="<%= getFile('user/js/functions.js') %>"></script>
 </head>
 <body>
 	<section id="sidebar">
@@ -17,8 +18,8 @@
 			<span class="text">FABRICA GALLETITAS</span>
 		</a> 
 		<ul class="side-menu top">
-			<li class="active">
-				<a href="#">
+			<li>
+				<a href="/user">
 					<i class='bx bxs-dashboard' ></i>
 					<span class="text">Panel</span>
 				</a>
@@ -64,7 +65,7 @@
             })
         </script>
     <% } %>
-	<script src="<%= getFile('user/js/dashboard.js') %>"></script>
 	<script src="<%= getFile('user/js/script.js') %>"></script>
+	<script src="<%= getFile('user/js/dashboard.js') %>"></script>
 </body>
 </html>

@@ -1,20 +1,38 @@
 const sidebarr = document.querySelector('#sidebar .side-menu');
 
+let html = "";
+
 if (user.group == 'cliente')
 {
-    let html = `
+    html = `
     <li>
         <a href="/user/store">
-            <i class='bx bx-plus' ></i>
+            <i class='bx bx-store-alt'></i>
             <span class="text">Gestionar Local</span>
         </a>
     </li>
     <li>
         <a href="/user/pedidos">
-            <i class='bx bx-store-alt'></i>
+            <i class='bx bx-package'></i>
             <span class="text">Gestionar pedidos</span>
         </a>
+    </li>
+    <li>
+        <a href="/user/pedidos/create">
+            <i class='bx bx-plus'></i>
+            <span class="text">Crear pedidos</span>
+        </a>
     </li>`
-
-    sidebarr.insertAdjacentHTML('beforeend', html)
 }
+else if (user.group == 'paletizador')
+{
+    html = `
+    <li>
+        <a href="/user/paletizador/pedidos">
+            <i class='bx bx-package'></i>
+            <span class="text">Lista pedidos</span>
+        </a>
+    </li>`
+}
+
+sidebarr.insertAdjacentHTML('beforeend', html);

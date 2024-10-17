@@ -17,25 +17,25 @@
         <div class="order">
             <div class="head">
                 <h3>Todos sus pedidos</h3>
-                <form action="#">
+                <!-- <form action="#">
                     <div class="form-input">
                         <input type="search" placeholder="Buscar...">
                         <button type="submit" class="search-btn"><i class='bx bx-search' ></i></button>
                     </div>
                 </form>
-                <i class='bx bx-filter' ></i>
+                <i class='bx bx-filter' ></i> -->
             </div>
             <table>
                 <thead>
                     <tr>
-                        <th>Usuario</th>
+                        <th>Order</th>
                         <th>Fecha de orden</th>
                         <th>Estado</th>
                         <th></th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
+                <tbody id="items">
+                    <!-- <tr>
                         <td></td>
                         <td>01-10-2021</td>
                         <td><span class="status completado">Completed</span></td>
@@ -70,13 +70,13 @@
                         </td>
                         <td>01-10-2021</td>
                         <td><span class="status pendiente">Pendiente</span><button><i class='bx bx-edit' ></i></button></td>
-                    </tr>
+                    </tr> -->
                 </tbody>
             </table>
         </div>
     </div>
 </main>
 <script>
-    
+    let orders = JSON.parse('<%- JSON.stringify(orders) %>');
 </script>
-<script src="<%= getFile('user/js/orders.js') %>"></script>
+<script src="<%= getFile('user/js/client/orders.js') %>"></script>

@@ -1,6 +1,4 @@
 const mysql = require('mysql2');
-const { v4: uuidv4 } = require('uuid');
-
 const functions = require('../../../../functions/functions');
 const auth = require('../../../../functions/auth');
 
@@ -13,7 +11,7 @@ module.exports = (router, database) =>
         const con = mysql.createConnection(database);
         
         try {
-            const [results] = await con.promise().query('SELECT s.name, o.date, o.status FROM orders o JOIN stores s ON s.id = o.store');
+            const [results] = await con.promise().query('SELECT o.id, o.order, o.date, o.status FROM orders o JOIN stores s ON s.id = o.store WHERE s.user = ?', [user.id]);
 
             res.render('user/home', { content: "client/pedidos", orders: results });
         } catch (error) {
