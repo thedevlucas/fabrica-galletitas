@@ -8,9 +8,9 @@ module.exports = (router, database) =>
 {
     const usedTokens = new Set();
 
-    router.get('/logistica/pedidos/view/:id', async (req, res) => {
+    router.get('/conductor/vehiculos/view/:id', async (req, res) => {
         const user = auth.getUser(functions.getCookie(req, 'token'));
-        if (user.group != 'logistica') return res.status(404);
+        if (user.group != 'conductor') return res.status(404);
 
         const params = req.params;
         if (params.id == undefined) return res.status(404);
@@ -18,25 +18,17 @@ module.exports = (router, database) =>
         const con = mysql.createConnection(database);
         
         try {
-            const [results] = await con.promise().query('SELECT o.id, s.name, s.address, o.order, o.status FROM orders o JOIN stores s ON s.id = o.store WHERE o.id = ?', [params.id]);
-            const [results2] = await con.promise().query('SELECT * FROM vehicles');
-
-            let comments;
-            if (results[0].status >= 2)
-            {
-                const [results3] = await con.promise().query('SELECT comments FROM orders_logs WHERE `order` = ? AND newStatus = 2', params.id);
-                comments = results3[0].comments;
-            }
+            const [results2] = await con.promise().query('SELECT o.id, s.address, o.status FROM trips t JOIN orders o ON o.id = t.order JOIN stores s ON s.id = o.store WHERE t.vehicle = ? ORDER BY o.status DESC', [params.id]);
 
             req.session.token = uuidv4();
-            res.render('user/home', { content: "logistic/pedidos-view", order: results[0], comments: comments, vehicles: results2 });
+            res.render('user/home', { content: "driver/trips", trips: results2 });
         } catch (error) {
             console.error(error);
         } finally {
             con.end();
         }
     });
-    router.post('/logistica/pedidos/check/:id', async (req, res) => {
+    router.post('/conductor/vehiculos/check/:id', async (req, res) => {
         const params = req.params;
         if (!req.session.token || usedTokens.has(req.session.token) || params.id == undefined) {
             return res.render('user/home', { 
@@ -45,7 +37,7 @@ module.exports = (router, database) =>
                     message: 'Invalid session token',
                     icon: 'error',
                     time: 5000,
-                    ruta: 'user/logistica/pedidos'
+                    ruta: 'user/conductor/vehiculos'
                 }
             });
         } else { usedTokens.add(req.session.token); }
@@ -65,7 +57,7 @@ module.exports = (router, database) =>
                     message: 'Pedido confirmado exitosamente',
                     icon: 'success',
                     time: 5000,
-                    ruta: 'user/logistica/pedidos/'
+                    ruta: 'user/conductor/pedidos/'
                 }
             });
         } catch (error) {
@@ -77,7 +69,7 @@ module.exports = (router, database) =>
                     message: 'Server error',
                     icon: 'error',
                     time: 5000,
-                    ruta: 'user/logistica/pedidos'
+                    ruta: 'user/conductor/pedidos'
                 }
             });
         } finally {

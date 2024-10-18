@@ -7,9 +7,10 @@ Object.defineProperty(String.prototype, 'capitalize', {
 
 const statusList = {
     0: "pendiente",
-    1: "despachado",
+    1: "despacho",
     2: "proceso",
-    3: "cancelado",
+    3: "viaje",
     4: "completado",
-    5: "devuelto"
+    5: "cancelado",
+    6: "devuelto"
 }

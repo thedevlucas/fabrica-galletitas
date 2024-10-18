@@ -479,7 +479,10 @@ body {
 #content main .table-data .order table tr td .status.devuelto {
 	background: var(--dark);
 }
-#content main .table-data .order table tr td .status.despachado {
+#content main .table-data .order table tr td .status.despacho {
+	background: #ffaf03;
+}
+#content main .table-data .order table tr td .status.viaje {
 	background: #08c5bc;
 }
 

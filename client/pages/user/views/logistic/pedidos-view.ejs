@@ -62,6 +62,13 @@
                                 <h5>Obvservaciones (Opcional)</h5>
                                 <textarea name="comments" id="comments" cols="100" rows="10"></textarea>
                             </div>
+                            <select name="vehicle" id="vehicle" required>
+                                <option value="" disabled selected>Selecione un vehiculo</option>
+                                <% for (let x of vehicles) { %>
+                                    <option value="<%= x.id %>"><%= x.patent %></option>
+                                <% } %>
+                            </select>
+                            <br>
                             <br>
                             <button>CONFIRMAR</button>
                         </div>

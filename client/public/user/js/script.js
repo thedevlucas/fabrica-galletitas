@@ -48,7 +48,7 @@ else if (user.group == 'conductor')
 {
     html = `
     <li>
-        <a href="/user/conductor/viajes">
+        <a href="/user/conductor/vehiculos">
             <i class='bx bxs-truck'></i>
             <span class="text">Lista de viajes</span>
         </a>
