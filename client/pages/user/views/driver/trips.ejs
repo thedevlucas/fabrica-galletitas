@@ -28,7 +28,7 @@
                     <div class="step-name">Salida</div>
                 </div>
                 <% for (let x of trips) { %>
-                    <div class="stepper-item">
+                    <div class="stepper-item" value="<%= x.id %>">
                         <div class="step-counter"><i class='bx bx-check'></i></div>
                         <div class="step-name"><%= x.address %></div>
                     </div>
@@ -39,18 +39,21 @@
                 </div>
             </div>
             <div class="detalles">
-                <form action="">
+                <form action="/user/conductor/vehiculos/check/"  method="post" id="form">
                     <div class="inputs">
-                        <div class="input">
+                        <div class="input" id="inputs">
                             <h5>Codigo de seguridad</h5>
-                            <input type="text" name="" id="">
+                            <input type="text" name="code" id="code">
                         </div>
-                        <button>CONFIRMAR</button>
+                        <button id="button">CONFIRMAR</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-    
-
 </main>
+<script>
+    let trips = JSON.parse('<%- JSON.stringify(trips) %>');
+</script>
+<script src="<%= getFile('user/js/orderHandler.js') %>"></script>
+<script src="<%= getFile('user/js/driver/trips.js') %>"></script>

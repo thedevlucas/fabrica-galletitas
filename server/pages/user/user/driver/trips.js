@@ -29,6 +29,7 @@ module.exports = (router, database) =>
         }
     });
     router.post('/conductor/vehiculos/check/:id', async (req, res) => {
+        console.log("x")
         const params = req.params;
         if (!req.session.token || usedTokens.has(req.session.token) || params.id == undefined) {
             return res.render('user/home', { 
@@ -47,17 +48,22 @@ module.exports = (router, database) =>
         const body = req.body
 
         try {
-            const [results_update] = await con.promise().query('UPDATE orders SET status = 2 WHERE id = ?', [params.id]);
-            const [results_insert] = await con.promise().query('INSERT INTO trips SET ?', {order: params.id, vehicle: body.vehicle});
-            const [results_insert2] = await con.promise().query('INSERT INTO orders_logs SET ?', {order: params.id, user: user.id, newStatus: 2, comments: body.comments});
+            if (body.code == 'start')
+            {
+                const [results_insert2] = await con.promise().query('INSERT INTO orders_logs SET ?', {order: params.id, user: user.id, newStatus: 2, comments: body.comments});
+            }
 
+            // const [results_update] = await con.promise().query('UPDATE orders SET status = 2 WHERE id = ?', [params.id]);
+            // const [results_insert] = await con.promise().query('INSERT INTO trips SET ?', {order: params.id, vehicle: body.vehicle});
+            // const [results_insert2] = await con.promise().query('INSERT INTO orders_logs SET ?', {order: params.id, user: user.id, newStatus: 2, comments: body.comments});
+            console.log(body)
             res.render('user/home', { 
                 alert: {
                     title: 'Success',
                     message: 'Pedido confirmado exitosamente',
                     icon: 'success',
                     time: 5000,
-                    ruta: 'user/conductor/pedidos/'
+                    ruta: 'user/conductor/vehiculos/check/' + params.id
                 }
             });
         } catch (error) {

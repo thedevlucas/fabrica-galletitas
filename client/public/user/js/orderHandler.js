@@ -8,7 +8,7 @@ function setStep(currentStep) {
         {
             step.classList.add("completed");
         }
-        if (index == currentStep) 
+        if (index == currentStep+1) 
         {
             step.classList.add("active");
         } 
