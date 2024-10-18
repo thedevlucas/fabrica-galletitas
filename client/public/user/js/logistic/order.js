@@ -11,7 +11,7 @@ setStep(step);
 const commentsText = document.getElementById('comments');
 const form = document.getElementById('form');
 
-if (order.status >= 1)
+if (order.status >= 2)
 {
     commentsText.value = comments;
     commentsText.disabled = true;

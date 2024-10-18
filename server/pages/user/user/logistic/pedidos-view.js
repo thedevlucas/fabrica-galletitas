@@ -8,9 +8,9 @@ module.exports = (router, database) =>
 {
     const usedTokens = new Set();
 
-    router.get('/paletizador/pedidos/view/:id', async (req, res) => {
+    router.get('/logistica/pedidos/view/:id', async (req, res) => {
         const user = auth.getUser(functions.getCookie(req, 'token'));
-        if (user.group != 'paletizador') return res.status(404);
+        if (user.group != 'logistica') return res.status(404);
 
         const params = req.params;
         if (params.id == undefined) return res.status(404);
@@ -21,21 +21,21 @@ module.exports = (router, database) =>
             const [results] = await con.promise().query('SELECT o.id, s.name, s.address, o.order, o.status FROM orders o JOIN stores s ON s.id = o.store WHERE o.id = ?', [params.id]);
 
             let comments;
-            if (results[0].status >= 1)
+            if (results[0].status >= 2)
             {
-                const [results2] = await con.promise().query('SELECT comments FROM orders_logs WHERE `order` = ? AND newStatus = 1', params.id);
+                const [results2] = await con.promise().query('SELECT comments FROM orders_logs WHERE `order` = ? AND newStatus = 2', params.id);
                 comments = results2[0].comments;
             }
 
             req.session.token = uuidv4();
-            res.render('user/home', { content: "pallete/pedidos-view", order: results[0], comments: comments });
+            res.render('user/home', { content: "logistic/pedidos-view", order: results[0], comments: comments });
         } catch (error) {
             console.error(error);
         } finally {
             con.end();
         }
     });
-    router.post('/paletizador/pedidos/check/:id', async (req, res) => {
+    router.post('/logistica/pedidos/check/:id', async (req, res) => {
         const params = req.params;
         if (!req.session.token || usedTokens.has(req.session.token) || params.id == undefined) {
             return res.render('user/home', { 
@@ -44,7 +44,7 @@ module.exports = (router, database) =>
                     message: 'Invalid session token',
                     icon: 'error',
                     time: 5000,
-                    ruta: 'user/paletizador/pedidos'
+                    ruta: 'user/logistica/pedidos'
                 }
             });
         } else { usedTokens.add(req.session.token); }
@@ -54,8 +54,8 @@ module.exports = (router, database) =>
         const body = req.body
 
         try {
-            const [results_update] = await con.promise().query('UPDATE orders SET status = 1 WHERE id = ?', [params.id]);
-            const [results_insert] = await con.promise().query('INSERT INTO orders_logs SET ?', {order: params.id, user: user.id, newStatus: 1, comments: body.comments});
+            const [results_update] = await con.promise().query('UPDATE orders SET status = 2 WHERE id = ?', [params.id]);
+            const [results_insert] = await con.promise().query('INSERT INTO orders_logs SET ?', {order: params.id, user: user.id, newStatus: 2, comments: body.comments});
 
             res.render('user/home', { 
                 alert: {
@@ -63,7 +63,7 @@ module.exports = (router, database) =>
                     message: 'Pedido confirmado exitosamente',
                     icon: 'success',
                     time: 5000,
-                    ruta: 'user/paletizador/pedidos/'
+                    ruta: 'user/logistica/pedidos/'
                 }
             });
         } catch (error) {
@@ -75,7 +75,7 @@ module.exports = (router, database) =>
                     message: 'Server error',
                     icon: 'error',
                     time: 5000,
-                    ruta: 'user/paletizador/pedidos'
+                    ruta: 'user/logistica/pedidos'
                 }
             });
         } finally {

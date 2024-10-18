@@ -56,7 +56,7 @@
                     </div>
                 </div>
                 <div class="detalles">
-                    <form action="/user/paletizador/pedidos/check/<%= order.id %>" method="post" id="form">
+                    <form action="/user/logistica/pedidos/check/<%= order.id %>" method="post" id="form">
                         <div class="inputs">
                             <div class="input">
                                 <h5>Obvservaciones (Opcional)</h5>
@@ -76,4 +76,4 @@
     let comments = '<%- comments %>';
 </script>
 <script src="<%= getFile('user/js/orderHandler.js') %>"></script>
-<script src="<%= getFile('user/js/pallete/order.js') %>"></script>
+<script src="<%= getFile('user/js/logistic/order.js') %>"></script>

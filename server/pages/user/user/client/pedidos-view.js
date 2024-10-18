@@ -8,13 +8,20 @@ module.exports = (router, database) =>
     router.get('/pedidos/view/:id', async (req, res) => {
         const user = auth.getUser(functions.getCookie(req, 'token'));
         if (user.group != 'cliente') return res.status(404);
+
+        const params = req.params;
+        if (params.id == undefined) return res.status(404);
         
         const con = mysql.createConnection(database);
         
         try {
-            // const [results] = await con.promise().query(`SELECT u.id, u.group, u.username, c.name AS course, p.date FROM users u LEFT JOIN purchases p ON u.id = p.userId LEFT JOIN courses c ON p.courseId = c.id`);
+            const [results] = await con.promise().query('SELECT id, status, code, `order` FROM orders WHERE id = ?', [params.id]);
+            const [results2] = await con.promise().query('SELECT date, newStatus, comments FROM orders_logs WHERE `order` = ?', [params.id]);
 
-            res.render('user/home', {content: "client/pedidos-view" });
+            let order = results[0];
+            order.logs = results2;
+
+            res.render('user/home', { content: "client/pedidos-view", order: order });
         } catch (error) {
             console.error(error);
         } finally {

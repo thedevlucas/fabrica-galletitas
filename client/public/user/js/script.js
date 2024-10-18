@@ -34,5 +34,26 @@ else if (user.group == 'paletizador')
         </a>
     </li>`
 }
+else if (user.group == 'logistica')
+{
+    html = `
+    <li>
+        <a href="/user/logistica/pedidos">
+            <i class='bx bx-package'></i>
+            <span class="text">Lista pedidos</span>
+        </a>
+    </li>`
+}
+else if (user.group == 'conductor')
+{
+    html = `
+    <li>
+        <a href="/user/conductor/viajes">
+            <i class='bx bxs-truck'></i>
+            <span class="text">Lista de viajes</span>
+        </a>
+    </li>`
+}
+    
 
 sidebarr.insertAdjacentHTML('beforeend', html);
