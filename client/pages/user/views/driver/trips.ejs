@@ -8,7 +8,7 @@
                 </li>
                 <li><i class='bx bx-chevron-right' ></i></li>
                 <li>
-                    <a href="/user/vehiculos" class="active">Vehiculos</a>
+                    <a href="/user/conductor/vehiculos" class="active">Vehiculos</a>
                 </li>
                 <li><i class='bx bx-chevron-right' ></i></li>
                 <li>
@@ -38,12 +38,25 @@
                     <div class="step-name">Recorrido finalizado</div>
                 </div>
             </div>
+            <div class="moreInfo">
+                <div class="details">
+                    <div>
+                        <h5>Detalles de la orden</h5>
+                        <p id="orderText">Esperando a iniciar el viaje</p>
+                    </div>
+                    <div>
+                        <h5>Comentario del de logistica</h5>
+                        <p id="comment">N/A</p>
+                    </div>
+                </div>
+            </div>
+            <br>
             <div class="detalles">
                 <form action="/user/conductor/vehiculos/check/"  method="post" id="form">
                     <div class="inputs">
                         <div class="input" id="inputs">
                             <h5>Codigo de seguridad</h5>
-                            <input type="text" name="code" id="code">
+                            <input type="text" name="code" id="code" required>
                         </div>
                         <button id="button">CONFIRMAR</button>
                     </div>

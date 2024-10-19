@@ -4,43 +4,43 @@
             <h1>Panel</h1>
             <ul class="breadcrumb">
                 <li>
-                    <a href="#">Panel</a>
+                    <a href="/user" class="active" >Panel</a>
                 </li>
                 <li><i class='bx bx-chevron-right' ></i></li>
                 <li>
-                    <a class="active" href="#">Pedidos</a>
+                    <a href="#">Pedidos</a>
                 </li>
             </ul>
         </div>
     </div>
-    
     <div class="table-data">
         <div class="order">
             <div class="head">
-                <h3>Todos los pedidos</h3>
-                <form action="#">
+                <h3>Todos sus pedidos</h3>
+                <!-- <form action="#">
                     <div class="form-input">
                         <input type="search" placeholder="Buscar...">
                         <button type="submit" class="search-btn"><i class='bx bx-search' ></i></button>
                     </div>
                 </form>
-                <i class='bx bx-filter' ></i>
+                <i class='bx bx-filter' ></i> -->
             </div>
             <table>
                 <thead>
                     <tr>
-                        <th>Usuario</th>
+                        <th>Tienda</th>
+                        <th>Order</th>
                         <th>Fecha de orden</th>
                         <th>Estado</th>
+                        <th></th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td>
-                            <p>John Doe</p>
-                        </td>
+                <tbody id="items">
+                    <!-- <tr>
+                        <td></td>
                         <td>01-10-2021</td>
-                        <td><span class="status completado">Completed</span> <button><i class='bx bx-edit' ></i></button></td>
+                        <td><span class="status completado">Completed</span></td>
+                        <td><i class='bx bx-edit' ></i></td>
                     </tr>
                     <tr>
                         <td>
@@ -71,9 +71,13 @@
                         </td>
                         <td>01-10-2021</td>
                         <td><span class="status pendiente">Pendiente</span><button><i class='bx bx-edit' ></i></button></td>
-                    </tr>
+                    </tr> -->
                 </tbody>
             </table>
         </div>
     </div>
 </main>
+<script>
+    let orders = JSON.parse('<%- JSON.stringify(orders) %>');
+</script>
+<script src="<%= getFile('admin/js/orders.js') %>"></script>

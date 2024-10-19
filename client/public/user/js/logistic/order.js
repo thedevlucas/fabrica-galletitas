@@ -21,3 +21,4 @@ if (order.status >= 2)
         e.preventDefault();
     });
 }
+console.log(order)

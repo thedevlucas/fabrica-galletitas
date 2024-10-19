@@ -11,7 +11,7 @@ module.exports = (router, database) =>
         const con = mysql.createConnection(database);
         
         try {
-            const [results] = await con.promise().query('SELECT o.id, o.order, o.date, o.status FROM orders o JOIN stores s ON s.id = o.store WHERE s.user = ?', [user.id]);
+            const [results] = await con.promise().query('SELECT o.id, o.order, o.date, o.status FROM orders o JOIN stores s ON s.id = o.store WHERE s.user = ? ORDER BY (o.status = 4), o.status DESC', [user.id]);
 
             res.render('user/home', { content: "client/pedidos", orders: results });
         } catch (error) {
