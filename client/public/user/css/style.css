@@ -486,6 +486,15 @@ body {
 	background: #08c5bc;
 }
 
+#content main .table-data .order .detalles form .inputs button {
+	padding: 5px 75px;
+	margin-bottom: 2%;
+	width: 250px;
+	cursor: pointer;
+} 
+
+
+
 #content main .table-data .order table tr td button {
 	border: none;
 	cursor: pointer;
