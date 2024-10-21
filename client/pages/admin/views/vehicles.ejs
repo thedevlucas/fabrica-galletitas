@@ -8,7 +8,7 @@
                 </li>
                 <li><i class='bx bx-chevron-right' ></i></li>
                 <li>
-                    <a class="active" href="#">Usuarios</a>
+                    <a class="active" href="#">Vehiculos</a>
                 </li>
             </ul>
         </div>
@@ -16,7 +16,7 @@
     <div class="table-data">
         <div class="order">
             <div class="head">
-                <h3>Todos los usuarios</h3>
+                <h3>Todos los vehículos</h3>
                 <!-- <form action="#">
                     <div class="form-input">
                         <input type="search" placeholder="Buscar...">
@@ -29,10 +29,7 @@
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Nombre</th>
-                        <th>Apellido</th>
-                        <th>Usuario</th>
-                        <th>Group</th>
+                        <th>Patente</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -41,10 +38,8 @@
                         <tr>
                             <td><%- x.id  %></td>
                             <td><%- x.name  %></td>
-                            <td><%- x.lastname  %></td>
-                            <td><%- x.username  %></td>
-                            <td><span class="status completado"><%- x.group  %></span></td>
-                            <!-- <td><a href="/admin/view/<%- x.id  %>"><i class='bx bx-edit' ></i></a></td> -->
+                        
+                            <td><a href="/admin/view/<%- x.id  %>"><i class='bx bx-trash' ></i></a></td>
                         </tr>
                     <% } %>
                     <!-- <tr>

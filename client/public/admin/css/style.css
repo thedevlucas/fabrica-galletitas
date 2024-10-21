@@ -628,3 +628,14 @@ main .register button {
 .moreInfo .detalles {
 	margin-right: 5%;
 }
+main .table-data .order .moreInfo .details{
+	display: flex;
+	width: 100%;
+}
+
+main .table-data .order .moreInfo .details div{
+	margin-right: 5%;
+	margin-top: 5%;
+	margin-bottom: 2%;
+	
+}
