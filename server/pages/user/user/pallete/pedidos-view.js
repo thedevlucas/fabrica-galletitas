@@ -55,7 +55,7 @@ module.exports = (router, database) =>
 
         try {
             const [results_update] = await con.promise().query('UPDATE orders SET status = 1 WHERE id = ?', [params.id]);
-            const [results_insert] = await con.promise().query('INSERT INTO orders_logs SET ?', {order: params.id, user: user.id, newStatus: 1, comments: body.comments});
+            const [results_insert] = await con.promise().query('INSERT INTO orders_logs SET ?', {order: params.id, user: user.id, newStatus: 1, comments: body.comments ? body.comments : undefined});
 
             res.render('user/home', { 
                 alert: {

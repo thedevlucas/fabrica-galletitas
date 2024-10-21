@@ -62,7 +62,7 @@ module.exports = (router, database) =>
             const [results_delete] = await con.promise().query('DELETE t FROM trips t JOIN orders o ON o.id = t.order WHERE o.status = 4');
             const [results_update] = await con.promise().query('UPDATE orders SET status = 2 WHERE id = ?', [params.id]);
             const [results_insert] = await con.promise().query('INSERT INTO trips SET ?', {order: params.id, vehicle: body.vehicle});
-            const [results_insert2] = await con.promise().query('INSERT INTO orders_logs SET ?', {order: params.id, user: user.id, newStatus: 2, comments: body.comments});
+            const [results_insert2] = await con.promise().query('INSERT INTO orders_logs SET ?', {order: params.id, user: user.id, newStatus: 2, comments: body.comments ? body.comments : undefined});
 
             res.render('user/home', { 
                 alert: {
