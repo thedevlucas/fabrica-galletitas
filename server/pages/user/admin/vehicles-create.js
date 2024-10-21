@@ -27,47 +27,40 @@ module.exports = (router, database) =>
                     message: 'Invalid session token',
                     icon: 'error',
                     time: 5000,
-                    ruta: 'admin/create'
+                    ruta: 'admin/vehicles/create'
                 }
             });
         } else { usedTokens.add(req.session.token); }
 
-        // const body = req.body;
-        // const con = mysql.createConnection(database);
+        const body = req.body;
+        const con = mysql.createConnection(database);
         
-        // try {
-        //     const passwordHashed = bcrypt.hashSync(body.password, 10);
-            
-        //     const [results_insert] = await con.promise().query('INSERT INTO users SET ?', {group: body.type, username: body.username, password: passwordHashed, name: body.name, lastname: body.lastname, phone: body.phone});
+        try { 
+            const [results_insert] = await con.promise().query('INSERT INTO vehicles SET ?', {patent: body.patent});
 
-        //     if (body.storeName && body.storeAddress)
-        //     {
-        //         const [results_insert2] = await con.promise().query('INSERT INTO stores SET ?', {user: results_insert.insertId, name: body.storeName, address: body.storeAddress}); 
-        //     }
+            res.render('admin/home', { 
+                alert: {
+                    title: 'Success',
+                    message: 'Vehiculo creado exitosamente',
+                    icon: 'success',
+                    time: 5000,
+                    ruta: 'admin/vehicles'
+                }
+            });
+        } catch (error) {
+            console.error(error);
 
-        //     res.render('admin/home', { 
-        //         alert: {
-        //             title: 'Success',
-        //             message: 'Usuario creado exitosamente',
-        //             icon: 'success',
-        //             time: 5000,
-        //             ruta: 'admin/create'
-        //         }
-        //     });
-        // } catch (error) {
-        //     console.error(error);
-
-        //     res.render('admin/home', { 
-        //         alert: {
-        //             title: 'Error',
-        //             message: 'Server error',
-        //             icon: 'error',
-        //             time: 5000,
-        //             ruta: 'admin/create'
-        //         }
-        //     });
-        // } finally {
-        //     con.end();
-        // }
+            res.render('admin/home', { 
+                alert: {
+                    title: 'Error',
+                    message: 'Server error',
+                    icon: 'error',
+                    time: 5000,
+                    ruta: 'admin/vehicles/create'
+                }
+            });
+        } finally {
+            con.end();
+        }
     });
 }
