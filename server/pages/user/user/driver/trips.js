@@ -25,7 +25,7 @@ module.exports = (router, database) =>
                 const comment = results3.find(c => c.order === result.id);
                 return {
                     ...result,
-                    comments: comment ? comment.comments.replace(/[\r\n]+/g, '') : "N/A"
+                    comments: comment.comments ? comment.comments.replace(/[\r\n]+/g, '') : "N/A"
                 };
             });
 
